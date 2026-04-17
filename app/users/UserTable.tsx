@@ -13,7 +13,7 @@ interface Props {
 
 const UserTable = async ({ sortOrder }: Props) => {
   const res = await fetch(
-    "https://jsonplaceholder.typicode.com/xusers",
+    "https://jsonplaceholder.typicode.com/users",
     // This will run a background job to refresh the data every 10 secs
     { cache: "no-store" },
   );
