@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { safeParse } from "zod";
 import schema from "./schema";
+import prisma from "@/prisma/client";
 
 export function GET(request: NextRequest) {
   return NextResponse.json([
@@ -14,8 +15,13 @@ export async function POST(request: NextRequest) {
   const validation = schema.safeParse(body);
   if (!validation.success)
     return NextResponse.json(validation.error.issues, { status: 400 });
-  return NextResponse.json(
-    { id: 10, name: body.name, price: body.price },
-    { status: 201 },
-  );
+
+  const newProduct = await prisma.product.create({
+    data: {
+      name: body.name,
+      price: body.price,
+    },
+  });
+
+  return NextResponse.json(newProduct, { status: 201 });
 }
