@@ -9,7 +9,8 @@ export function GET(request: NextRequest) {
     { id: 2, name: "Bread", price: 3.5 },
   ]);
 }
-
+//removed product from prisma model, prod build won't run without commenting it out
+/*
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const validation = schema.safeParse(body);
@@ -24,4 +25,6 @@ export async function POST(request: NextRequest) {
   });
 
   return NextResponse.json(newProduct, { status: 201 });
+  
 }
+*/
